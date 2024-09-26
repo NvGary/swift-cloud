@@ -1,5 +1,6 @@
 import type { ApolloServer, BaseContext } from '@apollo/server';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 import cors from 'cors';
 import type { ErrorRequestHandler, Request, RequestHandler, Response } from 'express';
 
@@ -22,6 +23,7 @@ const errorHandler: ErrorRequestHandler = (err: Error, _req, res, next) => {
 
 export function buildList({ apolloServer }: { apolloServer: ApolloServer<BaseContext>}): (ErrorRequestHandler | RequestHandler)[] {
     return [
+        (compression as () => RequestHandler)(),
         (cors as () => RequestHandler)(),
         bodyParser.json(),
         graphqlHandler({ apolloServer }),
