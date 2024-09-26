@@ -1,15 +1,33 @@
-# Album details
+#
+# Types references throughout the graphql definitions
+#
+
+#
+# Types relating to Albums
+#
+
+# An album, which can have song tracks and maybe different editions, e.g. platinum
 type Album {
+  # Internally assigned Id (key)
   AlbumId: BigInt!
-  tracks: [Song!]! @relationship(type: "HAS_TRACK", direction: OUT)
-  editions: [Edition!]! @relationship(type: "IS_EDITION", direction: OUT)
+
+  # album title
   title: String!
+
+  # Each album can have multiple different editions
+  editions: [Edition!]! @relationship(type: "IS_EDITION", direction: OUT)
+
+  # Traversal to song tracks
+  tracks: [Song!]! @relationship(type: "HAS_TRACK", direction: OUT)
 }
 
+# An edition of an album, e.g. platinum
 type Edition {
+  # name given to this 'edition'
   name: EditionType!
 }
 
+# Available album editions. Not all albums have specific editions.
 enum EditionType {
   Platinum
   Deluxe
@@ -17,42 +35,64 @@ enum EditionType {
   Soundtrack
 }
 
-type MonthlyPlaysProperties @relationshipProperties {
-  totalPlays: BigInt!
-}
+#
+# Types relating to People. These exist in different guises in this schema - Singer, Features & Composer
+#
 
+# A person. This will be Singer, Features and/or Composer depending on the individual & Song referenced
 type Person {
+  # name of the person (key)
   name: String!
+
+  # Traversal to Songs this person is credited as Singer
   sings: [Song!]! @relationship(type: "SINGS", direction: OUT)
+
+  # Traversal to Songs this person is credited as 'features on'
   featuredIn: [Song!]! @relationship(type: "FEATURES", direction: IN)
+
+  # Traversal to Songs this person is credited as 'lyrics written by'
   composed: [Song!]! @relationship(type: "LYRICS_BY", direction: IN)
 }
 
-type Play {
-  month: String!
-  song: [Song!]!
-    @relationship(
-      type: "MONTHLY_PLAYS"
-      direction: IN
-      properties: "MonthlyPlaysProperties"
-    )
-}
+#
+# Types relating to Songs
+#
 
+# A song which can reference peoplef, playouts and enveloping Album if applicable
 type Song {
+  # internally assigned id (key)
   SongId: BigInt!
-  album: [Album!]! @relationship(type: "HAS_TRACK", direction: IN)
-  features: [Person!]! @relationship(type: "FEATURES", direction: OUT)
+
+  # song title
+  title: String!
+
+  # Each song can have multiple different versions
   versions: [Version!]! @relationship(type: "IS_VERSION", direction: OUT)
+
+  # Traversal to Album on which this Song appears
+  album: [Album!]! @relationship(type: "HAS_TRACK", direction: IN)
+
+  # Traversal to People credited as Singers
+  singers: [Person!]! @relationship(type: "SINGS", direction: IN)
+
+  # Traversal to People who feature on this Song
+  features: [Person!]! @relationship(type: "FEATURES", direction: OUT)
+
+  # Traversal to People who wrote the lyrics on this Song
   composedBy: [Person!]! @relationship(type: "LYRICS_BY", direction: OUT)
+
+  # Year this Song was released
+  yearReleased: [Year!]! @relationship(type: "WAS_RELEASED", direction: OUT)
+
+  # Traversal to monthly play-out data. This edge contains the play count
   allPlays: [Play!]!
     @relationship(
       type: "MONTHLY_PLAYS"
       direction: OUT
       properties: "MonthlyPlaysProperties"
     )
-  singers: [Person!]! @relationship(type: "SINGS", direction: IN)
-  title: String!
-  yearReleased: [Year!]! @relationship(type: "WAS_RELEASED", direction: OUT)
+  
+  # Inline custom logic to collate all monthly play-out data
   monthlyPlays: BigInt! @cypher(
     statement: """
     MATCH (this)-[c:MONTHLY_PLAYS]-(Play)
@@ -62,15 +102,13 @@ type Song {
   )
 }
 
-type User {
-  username: String!
-}
-
+# A version of an Song, e.g. cover
 type Version {
   name: VersionType!
   songs: [Song!]! @relationship(type: "IS_VERSION", direction: IN)
 }
 
+# Available song versions. Not all songs have specific versions.
 enum VersionType {
   Album
   Cover
@@ -80,27 +118,87 @@ enum VersionType {
   Single
 }
 
+#
+# Types relating to song play-outs
+#
+
+# Monthly play of a song
+type Play {
+  # Name of the month
+  month: String!
+
+  # Traveral to song played
+  song: [Song!]!
+    @relationship(
+      type: "MONTHLY_PLAYS"
+      direction: IN
+      properties: "MonthlyPlaysProperties"
+    )
+}
+
+# Edge connecting Song & Play nodes
+type MonthlyPlaysProperties @relationshipProperties {
+  # total monthly plays for that song & month combination
+  totalPlays: BigInt!
+}
+
+#
+# Other type definitions
+#
+
+# User - we only have 1 registered user but who else do we really need :)
+type User {
+  # username for the user, i.e TayTay for our 1 user in ths system
+  username: String!
+}
+
+# Year ordinal
 type Year {
+  # ordinal (key)
   year: BigInt!
+
+  # Traversal to songs released in this year
   songs: [Song!]! @relationship(type: "WAS_RELEASED", direction: IN)
 }
 
-type PlayBreakdown {
-  version: [VersionType!]!
-  playCount: BigInt!
+#
+# Resolver specific type definitions
+#
+
+# Returns aggregated monthly plays for an individual song
+# Song is searched and matched by name
+# This allows for all song versions to be collated and considered as one, e.g. original, cover & live versions of a song, whilst different 'songs' will be treated as 1 in this Query
+type Query {
+  # total monthly plays for a specific song
+  monthlyPlaysForSong(params: MonthlyPlaysForSongParams): MonthlyPlaysForSongResponse
 }
 
-type MonthlyPlaysForSongResponse {
+# All input params for the Query monthlyPlaysForSong
+input MonthlyPlaysForSongParams {
+  # song title to search for
   title: String!
+}
+
+# Returned 'selected set' for the Query monthlyPlaysForSong
+type MonthlyPlaysForSongResponse {
+  # song title
+  title: String!
+
+  # how many versions are included in this count
   versionCount: BigInt!
+
+  # total counts of plays for all months
   totalPlays: BigInt!
+
+  # play count breakdown by version
   playBreakdown: [PlayBreakdown!]!
 }
 
-input MonthlyPlaysForSongParams {
-  title: String!
-}
+# Play count breakdown sub-graph returned as part of the Query monthlyPlaysForSong
+type PlayBreakdown {
+  # Specific Song version
+  version: [VersionType!]!
 
-type Query {
-  monthlyPlaysForSong(params: MonthlyPlaysForSongParams): MonthlyPlaysForSongResponse
+  # cummulative monthly play count for this version
+  playCount: BigInt!
 }

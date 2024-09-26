@@ -52,27 +52,27 @@ export type Query = {
   people: Array<Person>;
   peopleConnection: PeopleConnection;
   peopleAggregate: PersonAggregateSelection;
-  plays: Array<Play>;
-  playsConnection: PlaysConnection;
-  playsAggregate: PlayAggregateSelection;
   songs: Array<Song>;
   songsConnection: SongsConnection;
   songsAggregate: SongAggregateSelection;
-  users: Array<User>;
-  usersConnection: UsersConnection;
-  usersAggregate: UserAggregateSelection;
   versions: Array<Version>;
   versionsConnection: VersionsConnection;
   versionsAggregate: VersionAggregateSelection;
+  plays: Array<Play>;
+  playsConnection: PlaysConnection;
+  playsAggregate: PlayAggregateSelection;
+  users: Array<User>;
+  usersConnection: UsersConnection;
+  usersAggregate: UserAggregateSelection;
   years: Array<Year>;
   yearsConnection: YearsConnection;
   yearsAggregate: YearAggregateSelection;
-  playBreakdowns: Array<PlayBreakdown>;
-  playBreakdownsConnection: PlayBreakdownsConnection;
-  playBreakdownsAggregate: PlayBreakdownAggregateSelection;
   monthlyPlaysForSongResponses: Array<MonthlyPlaysForSongResponse>;
   monthlyPlaysForSongResponsesConnection: MonthlyPlaysForSongResponsesConnection;
   monthlyPlaysForSongResponsesAggregate: MonthlyPlaysForSongResponseAggregateSelection;
+  playBreakdowns: Array<PlayBreakdown>;
+  playBreakdownsConnection: PlayBreakdownsConnection;
+  playBreakdownsAggregate: PlayBreakdownAggregateSelection;
 };
 
 export type QueryMonthlyPlaysForSongArgs = {
@@ -127,22 +127,6 @@ export type QueryPeopleAggregateArgs = {
   where?: InputMaybe<PersonWhere>;
 };
 
-export type QueryPlaysArgs = {
-  where?: InputMaybe<PlayWhere>;
-  options?: InputMaybe<PlayOptions>;
-};
-
-export type QueryPlaysConnectionArgs = {
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  where?: InputMaybe<PlayWhere>;
-  sort?: InputMaybe<Array<InputMaybe<PlaySort>>>;
-};
-
-export type QueryPlaysAggregateArgs = {
-  where?: InputMaybe<PlayWhere>;
-};
-
 export type QuerySongsArgs = {
   where?: InputMaybe<SongWhere>;
   options?: InputMaybe<SongOptions>;
@@ -157,22 +141,6 @@ export type QuerySongsConnectionArgs = {
 
 export type QuerySongsAggregateArgs = {
   where?: InputMaybe<SongWhere>;
-};
-
-export type QueryUsersArgs = {
-  where?: InputMaybe<UserWhere>;
-  options?: InputMaybe<UserOptions>;
-};
-
-export type QueryUsersConnectionArgs = {
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  where?: InputMaybe<UserWhere>;
-  sort?: InputMaybe<Array<InputMaybe<UserSort>>>;
-};
-
-export type QueryUsersAggregateArgs = {
-  where?: InputMaybe<UserWhere>;
 };
 
 export type QueryVersionsArgs = {
@@ -191,6 +159,38 @@ export type QueryVersionsAggregateArgs = {
   where?: InputMaybe<VersionWhere>;
 };
 
+export type QueryPlaysArgs = {
+  where?: InputMaybe<PlayWhere>;
+  options?: InputMaybe<PlayOptions>;
+};
+
+export type QueryPlaysConnectionArgs = {
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  where?: InputMaybe<PlayWhere>;
+  sort?: InputMaybe<Array<InputMaybe<PlaySort>>>;
+};
+
+export type QueryPlaysAggregateArgs = {
+  where?: InputMaybe<PlayWhere>;
+};
+
+export type QueryUsersArgs = {
+  where?: InputMaybe<UserWhere>;
+  options?: InputMaybe<UserOptions>;
+};
+
+export type QueryUsersConnectionArgs = {
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  where?: InputMaybe<UserWhere>;
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>;
+};
+
+export type QueryUsersAggregateArgs = {
+  where?: InputMaybe<UserWhere>;
+};
+
 export type QueryYearsArgs = {
   where?: InputMaybe<YearWhere>;
   options?: InputMaybe<YearOptions>;
@@ -205,22 +205,6 @@ export type QueryYearsConnectionArgs = {
 
 export type QueryYearsAggregateArgs = {
   where?: InputMaybe<YearWhere>;
-};
-
-export type QueryPlayBreakdownsArgs = {
-  where?: InputMaybe<PlayBreakdownWhere>;
-  options?: InputMaybe<PlayBreakdownOptions>;
-};
-
-export type QueryPlayBreakdownsConnectionArgs = {
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  where?: InputMaybe<PlayBreakdownWhere>;
-  sort?: InputMaybe<Array<InputMaybe<PlayBreakdownSort>>>;
-};
-
-export type QueryPlayBreakdownsAggregateArgs = {
-  where?: InputMaybe<PlayBreakdownWhere>;
 };
 
 export type QueryMonthlyPlaysForSongResponsesArgs = {
@@ -239,6 +223,22 @@ export type QueryMonthlyPlaysForSongResponsesAggregateArgs = {
   where?: InputMaybe<MonthlyPlaysForSongResponseWhere>;
 };
 
+export type QueryPlayBreakdownsArgs = {
+  where?: InputMaybe<PlayBreakdownWhere>;
+  options?: InputMaybe<PlayBreakdownOptions>;
+};
+
+export type QueryPlayBreakdownsConnectionArgs = {
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  where?: InputMaybe<PlayBreakdownWhere>;
+  sort?: InputMaybe<Array<InputMaybe<PlayBreakdownSort>>>;
+};
+
+export type QueryPlayBreakdownsAggregateArgs = {
+  where?: InputMaybe<PlayBreakdownWhere>;
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   createAlbums: CreateAlbumsMutationResponse;
@@ -250,27 +250,27 @@ export type Mutation = {
   createPeople: CreatePeopleMutationResponse;
   deletePeople: DeleteInfo;
   updatePeople: UpdatePeopleMutationResponse;
-  createPlays: CreatePlaysMutationResponse;
-  deletePlays: DeleteInfo;
-  updatePlays: UpdatePlaysMutationResponse;
   createSongs: CreateSongsMutationResponse;
   deleteSongs: DeleteInfo;
   updateSongs: UpdateSongsMutationResponse;
-  createUsers: CreateUsersMutationResponse;
-  deleteUsers: DeleteInfo;
-  updateUsers: UpdateUsersMutationResponse;
   createVersions: CreateVersionsMutationResponse;
   deleteVersions: DeleteInfo;
   updateVersions: UpdateVersionsMutationResponse;
+  createPlays: CreatePlaysMutationResponse;
+  deletePlays: DeleteInfo;
+  updatePlays: UpdatePlaysMutationResponse;
+  createUsers: CreateUsersMutationResponse;
+  deleteUsers: DeleteInfo;
+  updateUsers: UpdateUsersMutationResponse;
   createYears: CreateYearsMutationResponse;
   deleteYears: DeleteInfo;
   updateYears: UpdateYearsMutationResponse;
-  createPlayBreakdowns: CreatePlayBreakdownsMutationResponse;
-  deletePlayBreakdowns: DeleteInfo;
-  updatePlayBreakdowns: UpdatePlayBreakdownsMutationResponse;
   createMonthlyPlaysForSongResponses: CreateMonthlyPlaysForSongResponsesMutationResponse;
   deleteMonthlyPlaysForSongResponses: DeleteInfo;
   updateMonthlyPlaysForSongResponses: UpdateMonthlyPlaysForSongResponsesMutationResponse;
+  createPlayBreakdowns: CreatePlayBreakdownsMutationResponse;
+  deletePlayBreakdowns: DeleteInfo;
+  updatePlayBreakdowns: UpdatePlayBreakdownsMutationResponse;
 };
 
 export type MutationCreateAlbumsArgs = {
@@ -322,24 +322,6 @@ export type MutationUpdatePeopleArgs = {
   delete?: InputMaybe<PersonDeleteInput>;
 };
 
-export type MutationCreatePlaysArgs = {
-  input: Array<PlayCreateInput>;
-};
-
-export type MutationDeletePlaysArgs = {
-  where?: InputMaybe<PlayWhere>;
-  delete?: InputMaybe<PlayDeleteInput>;
-};
-
-export type MutationUpdatePlaysArgs = {
-  where?: InputMaybe<PlayWhere>;
-  update?: InputMaybe<PlayUpdateInput>;
-  connect?: InputMaybe<PlayConnectInput>;
-  disconnect?: InputMaybe<PlayDisconnectInput>;
-  create?: InputMaybe<PlayRelationInput>;
-  delete?: InputMaybe<PlayDeleteInput>;
-};
-
 export type MutationCreateSongsArgs = {
   input: Array<SongCreateInput>;
 };
@@ -356,19 +338,6 @@ export type MutationUpdateSongsArgs = {
   disconnect?: InputMaybe<SongDisconnectInput>;
   create?: InputMaybe<SongRelationInput>;
   delete?: InputMaybe<SongDeleteInput>;
-};
-
-export type MutationCreateUsersArgs = {
-  input: Array<UserCreateInput>;
-};
-
-export type MutationDeleteUsersArgs = {
-  where?: InputMaybe<UserWhere>;
-};
-
-export type MutationUpdateUsersArgs = {
-  where?: InputMaybe<UserWhere>;
-  update?: InputMaybe<UserUpdateInput>;
 };
 
 export type MutationCreateVersionsArgs = {
@@ -389,6 +358,37 @@ export type MutationUpdateVersionsArgs = {
   delete?: InputMaybe<VersionDeleteInput>;
 };
 
+export type MutationCreatePlaysArgs = {
+  input: Array<PlayCreateInput>;
+};
+
+export type MutationDeletePlaysArgs = {
+  where?: InputMaybe<PlayWhere>;
+  delete?: InputMaybe<PlayDeleteInput>;
+};
+
+export type MutationUpdatePlaysArgs = {
+  where?: InputMaybe<PlayWhere>;
+  update?: InputMaybe<PlayUpdateInput>;
+  connect?: InputMaybe<PlayConnectInput>;
+  disconnect?: InputMaybe<PlayDisconnectInput>;
+  create?: InputMaybe<PlayRelationInput>;
+  delete?: InputMaybe<PlayDeleteInput>;
+};
+
+export type MutationCreateUsersArgs = {
+  input: Array<UserCreateInput>;
+};
+
+export type MutationDeleteUsersArgs = {
+  where?: InputMaybe<UserWhere>;
+};
+
+export type MutationUpdateUsersArgs = {
+  where?: InputMaybe<UserWhere>;
+  update?: InputMaybe<UserUpdateInput>;
+};
+
 export type MutationCreateYearsArgs = {
   input: Array<YearCreateInput>;
 };
@@ -407,19 +407,6 @@ export type MutationUpdateYearsArgs = {
   delete?: InputMaybe<YearDeleteInput>;
 };
 
-export type MutationCreatePlayBreakdownsArgs = {
-  input: Array<PlayBreakdownCreateInput>;
-};
-
-export type MutationDeletePlayBreakdownsArgs = {
-  where?: InputMaybe<PlayBreakdownWhere>;
-};
-
-export type MutationUpdatePlayBreakdownsArgs = {
-  where?: InputMaybe<PlayBreakdownWhere>;
-  update?: InputMaybe<PlayBreakdownUpdateInput>;
-};
-
 export type MutationCreateMonthlyPlaysForSongResponsesArgs = {
   input: Array<MonthlyPlaysForSongResponseCreateInput>;
 };
@@ -431,6 +418,19 @@ export type MutationDeleteMonthlyPlaysForSongResponsesArgs = {
 export type MutationUpdateMonthlyPlaysForSongResponsesArgs = {
   where?: InputMaybe<MonthlyPlaysForSongResponseWhere>;
   update?: InputMaybe<MonthlyPlaysForSongResponseUpdateInput>;
+};
+
+export type MutationCreatePlayBreakdownsArgs = {
+  input: Array<PlayBreakdownCreateInput>;
+};
+
+export type MutationDeletePlayBreakdownsArgs = {
+  where?: InputMaybe<PlayBreakdownWhere>;
+};
+
+export type MutationUpdatePlayBreakdownsArgs = {
+  where?: InputMaybe<PlayBreakdownWhere>;
+  update?: InputMaybe<PlayBreakdownUpdateInput>;
 };
 
 export enum EditionType {
@@ -461,31 +461,12 @@ export type Album = {
   __typename?: "Album";
   AlbumId: Scalars["BigInt"]["output"];
   title: Scalars["String"]["output"];
-  tracksAggregate?: Maybe<AlbumSongTracksAggregationSelection>;
-  tracks: Array<Song>;
-  tracksConnection: AlbumTracksConnection;
   editionsAggregate?: Maybe<AlbumEditionEditionsAggregationSelection>;
   editions: Array<Edition>;
   editionsConnection: AlbumEditionsConnection;
-};
-
-export type AlbumTracksAggregateArgs = {
-  where?: InputMaybe<SongWhere>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type AlbumTracksArgs = {
-  where?: InputMaybe<SongWhere>;
-  options?: InputMaybe<SongOptions>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type AlbumTracksConnectionArgs = {
-  where?: InputMaybe<AlbumTracksConnectionWhere>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  sort?: InputMaybe<Array<AlbumTracksConnectionSort>>;
+  tracksAggregate?: Maybe<AlbumSongTracksAggregationSelection>;
+  tracks: Array<Song>;
+  tracksConnection: AlbumTracksConnection;
 };
 
 export type AlbumEditionsAggregateArgs = {
@@ -505,6 +486,25 @@ export type AlbumEditionsConnectionArgs = {
   after?: InputMaybe<Scalars["String"]["input"]>;
   directed?: InputMaybe<Scalars["Boolean"]["input"]>;
   sort?: InputMaybe<Array<AlbumEditionsConnectionSort>>;
+};
+
+export type AlbumTracksAggregateArgs = {
+  where?: InputMaybe<SongWhere>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type AlbumTracksArgs = {
+  where?: InputMaybe<SongWhere>;
+  options?: InputMaybe<SongOptions>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type AlbumTracksConnectionArgs = {
+  where?: InputMaybe<AlbumTracksConnectionWhere>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  sort?: InputMaybe<Array<AlbumTracksConnectionSort>>;
 };
 
 export type AlbumAggregateSelection = {
@@ -710,8 +710,8 @@ export type MonthlyPlaysForSongResponsesConnection = {
 
 /**
  * The edge properties for the following fields:
- * * Play.song
  * * Song.allPlays
+ * * Play.song
  */
 export type MonthlyPlaysProperties = {
   __typename?: "MonthlyPlaysProperties";
@@ -1000,65 +1000,27 @@ export type Song = {
   SongId: Scalars["BigInt"]["output"];
   title: Scalars["String"]["output"];
   monthlyPlays: Scalars["BigInt"]["output"];
-  albumAggregate?: Maybe<SongAlbumAlbumAggregationSelection>;
-  album: Array<Album>;
-  albumConnection: SongAlbumConnection;
-  featuresAggregate?: Maybe<SongPersonFeaturesAggregationSelection>;
-  features: Array<Person>;
-  featuresConnection: SongFeaturesConnection;
   versionsAggregate?: Maybe<SongVersionVersionsAggregationSelection>;
   versions: Array<Version>;
   versionsConnection: SongVersionsConnection;
-  composedByAggregate?: Maybe<SongPersonComposedByAggregationSelection>;
-  composedBy: Array<Person>;
-  composedByConnection: SongComposedByConnection;
-  allPlaysAggregate?: Maybe<SongPlayAllPlaysAggregationSelection>;
-  allPlays: Array<Play>;
-  allPlaysConnection: SongAllPlaysConnection;
+  albumAggregate?: Maybe<SongAlbumAlbumAggregationSelection>;
+  album: Array<Album>;
+  albumConnection: SongAlbumConnection;
   singersAggregate?: Maybe<SongPersonSingersAggregationSelection>;
   singers: Array<Person>;
   singersConnection: SongSingersConnection;
+  featuresAggregate?: Maybe<SongPersonFeaturesAggregationSelection>;
+  features: Array<Person>;
+  featuresConnection: SongFeaturesConnection;
+  composedByAggregate?: Maybe<SongPersonComposedByAggregationSelection>;
+  composedBy: Array<Person>;
+  composedByConnection: SongComposedByConnection;
   yearReleasedAggregate?: Maybe<SongYearYearReleasedAggregationSelection>;
   yearReleased: Array<Year>;
   yearReleasedConnection: SongYearReleasedConnection;
-};
-
-export type SongAlbumAggregateArgs = {
-  where?: InputMaybe<AlbumWhere>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type SongAlbumArgs = {
-  where?: InputMaybe<AlbumWhere>;
-  options?: InputMaybe<AlbumOptions>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type SongAlbumConnectionArgs = {
-  where?: InputMaybe<SongAlbumConnectionWhere>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  sort?: InputMaybe<Array<SongAlbumConnectionSort>>;
-};
-
-export type SongFeaturesAggregateArgs = {
-  where?: InputMaybe<PersonWhere>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type SongFeaturesArgs = {
-  where?: InputMaybe<PersonWhere>;
-  options?: InputMaybe<PersonOptions>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type SongFeaturesConnectionArgs = {
-  where?: InputMaybe<SongFeaturesConnectionWhere>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  sort?: InputMaybe<Array<SongFeaturesConnectionSort>>;
+  allPlaysAggregate?: Maybe<SongPlayAllPlaysAggregationSelection>;
+  allPlays: Array<Play>;
+  allPlaysConnection: SongAllPlaysConnection;
 };
 
 export type SongVersionsAggregateArgs = {
@@ -1080,42 +1042,23 @@ export type SongVersionsConnectionArgs = {
   sort?: InputMaybe<Array<SongVersionsConnectionSort>>;
 };
 
-export type SongComposedByAggregateArgs = {
-  where?: InputMaybe<PersonWhere>;
+export type SongAlbumAggregateArgs = {
+  where?: InputMaybe<AlbumWhere>;
   directed?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
-export type SongComposedByArgs = {
-  where?: InputMaybe<PersonWhere>;
-  options?: InputMaybe<PersonOptions>;
+export type SongAlbumArgs = {
+  where?: InputMaybe<AlbumWhere>;
+  options?: InputMaybe<AlbumOptions>;
   directed?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
-export type SongComposedByConnectionArgs = {
-  where?: InputMaybe<SongComposedByConnectionWhere>;
+export type SongAlbumConnectionArgs = {
+  where?: InputMaybe<SongAlbumConnectionWhere>;
   first?: InputMaybe<Scalars["Int"]["input"]>;
   after?: InputMaybe<Scalars["String"]["input"]>;
   directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  sort?: InputMaybe<Array<SongComposedByConnectionSort>>;
-};
-
-export type SongAllPlaysAggregateArgs = {
-  where?: InputMaybe<PlayWhere>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type SongAllPlaysArgs = {
-  where?: InputMaybe<PlayWhere>;
-  options?: InputMaybe<PlayOptions>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type SongAllPlaysConnectionArgs = {
-  where?: InputMaybe<SongAllPlaysConnectionWhere>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  sort?: InputMaybe<Array<SongAllPlaysConnectionSort>>;
+  sort?: InputMaybe<Array<SongAlbumConnectionSort>>;
 };
 
 export type SongSingersAggregateArgs = {
@@ -1137,6 +1080,44 @@ export type SongSingersConnectionArgs = {
   sort?: InputMaybe<Array<SongSingersConnectionSort>>;
 };
 
+export type SongFeaturesAggregateArgs = {
+  where?: InputMaybe<PersonWhere>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type SongFeaturesArgs = {
+  where?: InputMaybe<PersonWhere>;
+  options?: InputMaybe<PersonOptions>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type SongFeaturesConnectionArgs = {
+  where?: InputMaybe<SongFeaturesConnectionWhere>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  sort?: InputMaybe<Array<SongFeaturesConnectionSort>>;
+};
+
+export type SongComposedByAggregateArgs = {
+  where?: InputMaybe<PersonWhere>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type SongComposedByArgs = {
+  where?: InputMaybe<PersonWhere>;
+  options?: InputMaybe<PersonOptions>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type SongComposedByConnectionArgs = {
+  where?: InputMaybe<SongComposedByConnectionWhere>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  sort?: InputMaybe<Array<SongComposedByConnectionSort>>;
+};
+
 export type SongYearReleasedAggregateArgs = {
   where?: InputMaybe<YearWhere>;
   directed?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -1154,6 +1135,25 @@ export type SongYearReleasedConnectionArgs = {
   after?: InputMaybe<Scalars["String"]["input"]>;
   directed?: InputMaybe<Scalars["Boolean"]["input"]>;
   sort?: InputMaybe<Array<SongYearReleasedConnectionSort>>;
+};
+
+export type SongAllPlaysAggregateArgs = {
+  where?: InputMaybe<PlayWhere>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type SongAllPlaysArgs = {
+  where?: InputMaybe<PlayWhere>;
+  options?: InputMaybe<PlayOptions>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type SongAllPlaysConnectionArgs = {
+  where?: InputMaybe<SongAllPlaysConnectionWhere>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  directed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  sort?: InputMaybe<Array<SongAllPlaysConnectionSort>>;
 };
 
 export type SongAggregateSelection = {
@@ -1589,8 +1589,8 @@ export type YearSongsRelationship = {
 };
 
 export type AlbumConnectInput = {
-  tracks?: InputMaybe<Array<AlbumTracksConnectFieldInput>>;
   editions?: InputMaybe<Array<AlbumEditionsConnectFieldInput>>;
+  tracks?: InputMaybe<Array<AlbumTracksConnectFieldInput>>;
 };
 
 export type AlbumConnectWhere = {
@@ -1600,18 +1600,18 @@ export type AlbumConnectWhere = {
 export type AlbumCreateInput = {
   AlbumId: Scalars["BigInt"]["input"];
   title: Scalars["String"]["input"];
-  tracks?: InputMaybe<AlbumTracksFieldInput>;
   editions?: InputMaybe<AlbumEditionsFieldInput>;
+  tracks?: InputMaybe<AlbumTracksFieldInput>;
 };
 
 export type AlbumDeleteInput = {
-  tracks?: InputMaybe<Array<AlbumTracksDeleteFieldInput>>;
   editions?: InputMaybe<Array<AlbumEditionsDeleteFieldInput>>;
+  tracks?: InputMaybe<Array<AlbumTracksDeleteFieldInput>>;
 };
 
 export type AlbumDisconnectInput = {
-  tracks?: InputMaybe<Array<AlbumTracksDisconnectFieldInput>>;
   editions?: InputMaybe<Array<AlbumEditionsDisconnectFieldInput>>;
+  tracks?: InputMaybe<Array<AlbumTracksDisconnectFieldInput>>;
 };
 
 export type AlbumEditionsAggregateInput = {
@@ -1682,8 +1682,8 @@ export type AlbumOptions = {
 };
 
 export type AlbumRelationInput = {
-  tracks?: InputMaybe<Array<AlbumTracksCreateFieldInput>>;
   editions?: InputMaybe<Array<AlbumEditionsCreateFieldInput>>;
+  tracks?: InputMaybe<Array<AlbumTracksCreateFieldInput>>;
 };
 
 /** Fields to sort Albums by. The order in which sorts are applied is not guaranteed when specifying many fields in one AlbumSort object. */
@@ -1852,8 +1852,8 @@ export type AlbumUpdateInput = {
   AlbumId_INCREMENT?: InputMaybe<Scalars["BigInt"]["input"]>;
   AlbumId_DECREMENT?: InputMaybe<Scalars["BigInt"]["input"]>;
   title?: InputMaybe<Scalars["String"]["input"]>;
-  tracks?: InputMaybe<Array<AlbumTracksUpdateFieldInput>>;
   editions?: InputMaybe<Array<AlbumEditionsUpdateFieldInput>>;
+  tracks?: InputMaybe<Array<AlbumTracksUpdateFieldInput>>;
 };
 
 export type AlbumWhere = {
@@ -1885,31 +1885,6 @@ export type AlbumWhere = {
   OR?: InputMaybe<Array<AlbumWhere>>;
   AND?: InputMaybe<Array<AlbumWhere>>;
   NOT?: InputMaybe<AlbumWhere>;
-  /** @deprecated Use `tracks_SOME` instead. */
-  tracks?: InputMaybe<SongWhere>;
-  /** @deprecated Use `tracks_NONE` instead. */
-  tracks_NOT?: InputMaybe<SongWhere>;
-  /** Return Albums where all of the related Songs match this filter */
-  tracks_ALL?: InputMaybe<SongWhere>;
-  /** Return Albums where none of the related Songs match this filter */
-  tracks_NONE?: InputMaybe<SongWhere>;
-  /** Return Albums where one of the related Songs match this filter */
-  tracks_SINGLE?: InputMaybe<SongWhere>;
-  /** Return Albums where some of the related Songs match this filter */
-  tracks_SOME?: InputMaybe<SongWhere>;
-  /** @deprecated Use `tracksConnection_SOME` instead. */
-  tracksConnection?: InputMaybe<AlbumTracksConnectionWhere>;
-  /** @deprecated Use `tracksConnection_NONE` instead. */
-  tracksConnection_NOT?: InputMaybe<AlbumTracksConnectionWhere>;
-  /** Return Albums where all of the related AlbumTracksConnections match this filter */
-  tracksConnection_ALL?: InputMaybe<AlbumTracksConnectionWhere>;
-  /** Return Albums where none of the related AlbumTracksConnections match this filter */
-  tracksConnection_NONE?: InputMaybe<AlbumTracksConnectionWhere>;
-  /** Return Albums where one of the related AlbumTracksConnections match this filter */
-  tracksConnection_SINGLE?: InputMaybe<AlbumTracksConnectionWhere>;
-  /** Return Albums where some of the related AlbumTracksConnections match this filter */
-  tracksConnection_SOME?: InputMaybe<AlbumTracksConnectionWhere>;
-  tracksAggregate?: InputMaybe<AlbumTracksAggregateInput>;
   /** @deprecated Use `editions_SOME` instead. */
   editions?: InputMaybe<EditionWhere>;
   /** @deprecated Use `editions_NONE` instead. */
@@ -1935,6 +1910,31 @@ export type AlbumWhere = {
   /** Return Albums where some of the related AlbumEditionsConnections match this filter */
   editionsConnection_SOME?: InputMaybe<AlbumEditionsConnectionWhere>;
   editionsAggregate?: InputMaybe<AlbumEditionsAggregateInput>;
+  /** @deprecated Use `tracks_SOME` instead. */
+  tracks?: InputMaybe<SongWhere>;
+  /** @deprecated Use `tracks_NONE` instead. */
+  tracks_NOT?: InputMaybe<SongWhere>;
+  /** Return Albums where all of the related Songs match this filter */
+  tracks_ALL?: InputMaybe<SongWhere>;
+  /** Return Albums where none of the related Songs match this filter */
+  tracks_NONE?: InputMaybe<SongWhere>;
+  /** Return Albums where one of the related Songs match this filter */
+  tracks_SINGLE?: InputMaybe<SongWhere>;
+  /** Return Albums where some of the related Songs match this filter */
+  tracks_SOME?: InputMaybe<SongWhere>;
+  /** @deprecated Use `tracksConnection_SOME` instead. */
+  tracksConnection?: InputMaybe<AlbumTracksConnectionWhere>;
+  /** @deprecated Use `tracksConnection_NONE` instead. */
+  tracksConnection_NOT?: InputMaybe<AlbumTracksConnectionWhere>;
+  /** Return Albums where all of the related AlbumTracksConnections match this filter */
+  tracksConnection_ALL?: InputMaybe<AlbumTracksConnectionWhere>;
+  /** Return Albums where none of the related AlbumTracksConnections match this filter */
+  tracksConnection_NONE?: InputMaybe<AlbumTracksConnectionWhere>;
+  /** Return Albums where one of the related AlbumTracksConnections match this filter */
+  tracksConnection_SINGLE?: InputMaybe<AlbumTracksConnectionWhere>;
+  /** Return Albums where some of the related AlbumTracksConnections match this filter */
+  tracksConnection_SOME?: InputMaybe<AlbumTracksConnectionWhere>;
+  tracksAggregate?: InputMaybe<AlbumTracksAggregateInput>;
 };
 
 export type EditionConnectWhere = {
@@ -3440,13 +3440,13 @@ export type SongComposedByUpdateFieldInput = {
 };
 
 export type SongConnectInput = {
-  album?: InputMaybe<Array<SongAlbumConnectFieldInput>>;
-  features?: InputMaybe<Array<SongFeaturesConnectFieldInput>>;
   versions?: InputMaybe<Array<SongVersionsConnectFieldInput>>;
-  composedBy?: InputMaybe<Array<SongComposedByConnectFieldInput>>;
-  allPlays?: InputMaybe<Array<SongAllPlaysConnectFieldInput>>;
+  album?: InputMaybe<Array<SongAlbumConnectFieldInput>>;
   singers?: InputMaybe<Array<SongSingersConnectFieldInput>>;
+  features?: InputMaybe<Array<SongFeaturesConnectFieldInput>>;
+  composedBy?: InputMaybe<Array<SongComposedByConnectFieldInput>>;
   yearReleased?: InputMaybe<Array<SongYearReleasedConnectFieldInput>>;
+  allPlays?: InputMaybe<Array<SongAllPlaysConnectFieldInput>>;
 };
 
 export type SongConnectWhere = {
@@ -3456,33 +3456,33 @@ export type SongConnectWhere = {
 export type SongCreateInput = {
   SongId: Scalars["BigInt"]["input"];
   title: Scalars["String"]["input"];
-  album?: InputMaybe<SongAlbumFieldInput>;
-  features?: InputMaybe<SongFeaturesFieldInput>;
   versions?: InputMaybe<SongVersionsFieldInput>;
-  composedBy?: InputMaybe<SongComposedByFieldInput>;
-  allPlays?: InputMaybe<SongAllPlaysFieldInput>;
+  album?: InputMaybe<SongAlbumFieldInput>;
   singers?: InputMaybe<SongSingersFieldInput>;
+  features?: InputMaybe<SongFeaturesFieldInput>;
+  composedBy?: InputMaybe<SongComposedByFieldInput>;
   yearReleased?: InputMaybe<SongYearReleasedFieldInput>;
+  allPlays?: InputMaybe<SongAllPlaysFieldInput>;
 };
 
 export type SongDeleteInput = {
-  album?: InputMaybe<Array<SongAlbumDeleteFieldInput>>;
-  features?: InputMaybe<Array<SongFeaturesDeleteFieldInput>>;
   versions?: InputMaybe<Array<SongVersionsDeleteFieldInput>>;
-  composedBy?: InputMaybe<Array<SongComposedByDeleteFieldInput>>;
-  allPlays?: InputMaybe<Array<SongAllPlaysDeleteFieldInput>>;
+  album?: InputMaybe<Array<SongAlbumDeleteFieldInput>>;
   singers?: InputMaybe<Array<SongSingersDeleteFieldInput>>;
+  features?: InputMaybe<Array<SongFeaturesDeleteFieldInput>>;
+  composedBy?: InputMaybe<Array<SongComposedByDeleteFieldInput>>;
   yearReleased?: InputMaybe<Array<SongYearReleasedDeleteFieldInput>>;
+  allPlays?: InputMaybe<Array<SongAllPlaysDeleteFieldInput>>;
 };
 
 export type SongDisconnectInput = {
-  album?: InputMaybe<Array<SongAlbumDisconnectFieldInput>>;
-  features?: InputMaybe<Array<SongFeaturesDisconnectFieldInput>>;
   versions?: InputMaybe<Array<SongVersionsDisconnectFieldInput>>;
-  composedBy?: InputMaybe<Array<SongComposedByDisconnectFieldInput>>;
-  allPlays?: InputMaybe<Array<SongAllPlaysDisconnectFieldInput>>;
+  album?: InputMaybe<Array<SongAlbumDisconnectFieldInput>>;
   singers?: InputMaybe<Array<SongSingersDisconnectFieldInput>>;
+  features?: InputMaybe<Array<SongFeaturesDisconnectFieldInput>>;
+  composedBy?: InputMaybe<Array<SongComposedByDisconnectFieldInput>>;
   yearReleased?: InputMaybe<Array<SongYearReleasedDisconnectFieldInput>>;
+  allPlays?: InputMaybe<Array<SongAllPlaysDisconnectFieldInput>>;
 };
 
 export type SongFeaturesAggregateInput = {
@@ -3618,13 +3618,13 @@ export type SongOptions = {
 };
 
 export type SongRelationInput = {
-  album?: InputMaybe<Array<SongAlbumCreateFieldInput>>;
-  features?: InputMaybe<Array<SongFeaturesCreateFieldInput>>;
   versions?: InputMaybe<Array<SongVersionsCreateFieldInput>>;
-  composedBy?: InputMaybe<Array<SongComposedByCreateFieldInput>>;
-  allPlays?: InputMaybe<Array<SongAllPlaysCreateFieldInput>>;
+  album?: InputMaybe<Array<SongAlbumCreateFieldInput>>;
   singers?: InputMaybe<Array<SongSingersCreateFieldInput>>;
+  features?: InputMaybe<Array<SongFeaturesCreateFieldInput>>;
+  composedBy?: InputMaybe<Array<SongComposedByCreateFieldInput>>;
   yearReleased?: InputMaybe<Array<SongYearReleasedCreateFieldInput>>;
+  allPlays?: InputMaybe<Array<SongAllPlaysCreateFieldInput>>;
 };
 
 export type SongSingersAggregateInput = {
@@ -3764,13 +3764,13 @@ export type SongUpdateInput = {
   SongId_INCREMENT?: InputMaybe<Scalars["BigInt"]["input"]>;
   SongId_DECREMENT?: InputMaybe<Scalars["BigInt"]["input"]>;
   title?: InputMaybe<Scalars["String"]["input"]>;
-  album?: InputMaybe<Array<SongAlbumUpdateFieldInput>>;
-  features?: InputMaybe<Array<SongFeaturesUpdateFieldInput>>;
   versions?: InputMaybe<Array<SongVersionsUpdateFieldInput>>;
-  composedBy?: InputMaybe<Array<SongComposedByUpdateFieldInput>>;
-  allPlays?: InputMaybe<Array<SongAllPlaysUpdateFieldInput>>;
+  album?: InputMaybe<Array<SongAlbumUpdateFieldInput>>;
   singers?: InputMaybe<Array<SongSingersUpdateFieldInput>>;
+  features?: InputMaybe<Array<SongFeaturesUpdateFieldInput>>;
+  composedBy?: InputMaybe<Array<SongComposedByUpdateFieldInput>>;
   yearReleased?: InputMaybe<Array<SongYearReleasedUpdateFieldInput>>;
+  allPlays?: InputMaybe<Array<SongAllPlaysUpdateFieldInput>>;
 };
 
 export type SongVersionsAggregateInput = {
@@ -3865,56 +3865,6 @@ export type SongWhere = {
   OR?: InputMaybe<Array<SongWhere>>;
   AND?: InputMaybe<Array<SongWhere>>;
   NOT?: InputMaybe<SongWhere>;
-  /** @deprecated Use `album_SOME` instead. */
-  album?: InputMaybe<AlbumWhere>;
-  /** @deprecated Use `album_NONE` instead. */
-  album_NOT?: InputMaybe<AlbumWhere>;
-  /** Return Songs where all of the related Albums match this filter */
-  album_ALL?: InputMaybe<AlbumWhere>;
-  /** Return Songs where none of the related Albums match this filter */
-  album_NONE?: InputMaybe<AlbumWhere>;
-  /** Return Songs where one of the related Albums match this filter */
-  album_SINGLE?: InputMaybe<AlbumWhere>;
-  /** Return Songs where some of the related Albums match this filter */
-  album_SOME?: InputMaybe<AlbumWhere>;
-  /** @deprecated Use `albumConnection_SOME` instead. */
-  albumConnection?: InputMaybe<SongAlbumConnectionWhere>;
-  /** @deprecated Use `albumConnection_NONE` instead. */
-  albumConnection_NOT?: InputMaybe<SongAlbumConnectionWhere>;
-  /** Return Songs where all of the related SongAlbumConnections match this filter */
-  albumConnection_ALL?: InputMaybe<SongAlbumConnectionWhere>;
-  /** Return Songs where none of the related SongAlbumConnections match this filter */
-  albumConnection_NONE?: InputMaybe<SongAlbumConnectionWhere>;
-  /** Return Songs where one of the related SongAlbumConnections match this filter */
-  albumConnection_SINGLE?: InputMaybe<SongAlbumConnectionWhere>;
-  /** Return Songs where some of the related SongAlbumConnections match this filter */
-  albumConnection_SOME?: InputMaybe<SongAlbumConnectionWhere>;
-  albumAggregate?: InputMaybe<SongAlbumAggregateInput>;
-  /** @deprecated Use `features_SOME` instead. */
-  features?: InputMaybe<PersonWhere>;
-  /** @deprecated Use `features_NONE` instead. */
-  features_NOT?: InputMaybe<PersonWhere>;
-  /** Return Songs where all of the related People match this filter */
-  features_ALL?: InputMaybe<PersonWhere>;
-  /** Return Songs where none of the related People match this filter */
-  features_NONE?: InputMaybe<PersonWhere>;
-  /** Return Songs where one of the related People match this filter */
-  features_SINGLE?: InputMaybe<PersonWhere>;
-  /** Return Songs where some of the related People match this filter */
-  features_SOME?: InputMaybe<PersonWhere>;
-  /** @deprecated Use `featuresConnection_SOME` instead. */
-  featuresConnection?: InputMaybe<SongFeaturesConnectionWhere>;
-  /** @deprecated Use `featuresConnection_NONE` instead. */
-  featuresConnection_NOT?: InputMaybe<SongFeaturesConnectionWhere>;
-  /** Return Songs where all of the related SongFeaturesConnections match this filter */
-  featuresConnection_ALL?: InputMaybe<SongFeaturesConnectionWhere>;
-  /** Return Songs where none of the related SongFeaturesConnections match this filter */
-  featuresConnection_NONE?: InputMaybe<SongFeaturesConnectionWhere>;
-  /** Return Songs where one of the related SongFeaturesConnections match this filter */
-  featuresConnection_SINGLE?: InputMaybe<SongFeaturesConnectionWhere>;
-  /** Return Songs where some of the related SongFeaturesConnections match this filter */
-  featuresConnection_SOME?: InputMaybe<SongFeaturesConnectionWhere>;
-  featuresAggregate?: InputMaybe<SongFeaturesAggregateInput>;
   /** @deprecated Use `versions_SOME` instead. */
   versions?: InputMaybe<VersionWhere>;
   /** @deprecated Use `versions_NONE` instead. */
@@ -3940,56 +3890,31 @@ export type SongWhere = {
   /** Return Songs where some of the related SongVersionsConnections match this filter */
   versionsConnection_SOME?: InputMaybe<SongVersionsConnectionWhere>;
   versionsAggregate?: InputMaybe<SongVersionsAggregateInput>;
-  /** @deprecated Use `composedBy_SOME` instead. */
-  composedBy?: InputMaybe<PersonWhere>;
-  /** @deprecated Use `composedBy_NONE` instead. */
-  composedBy_NOT?: InputMaybe<PersonWhere>;
-  /** Return Songs where all of the related People match this filter */
-  composedBy_ALL?: InputMaybe<PersonWhere>;
-  /** Return Songs where none of the related People match this filter */
-  composedBy_NONE?: InputMaybe<PersonWhere>;
-  /** Return Songs where one of the related People match this filter */
-  composedBy_SINGLE?: InputMaybe<PersonWhere>;
-  /** Return Songs where some of the related People match this filter */
-  composedBy_SOME?: InputMaybe<PersonWhere>;
-  /** @deprecated Use `composedByConnection_SOME` instead. */
-  composedByConnection?: InputMaybe<SongComposedByConnectionWhere>;
-  /** @deprecated Use `composedByConnection_NONE` instead. */
-  composedByConnection_NOT?: InputMaybe<SongComposedByConnectionWhere>;
-  /** Return Songs where all of the related SongComposedByConnections match this filter */
-  composedByConnection_ALL?: InputMaybe<SongComposedByConnectionWhere>;
-  /** Return Songs where none of the related SongComposedByConnections match this filter */
-  composedByConnection_NONE?: InputMaybe<SongComposedByConnectionWhere>;
-  /** Return Songs where one of the related SongComposedByConnections match this filter */
-  composedByConnection_SINGLE?: InputMaybe<SongComposedByConnectionWhere>;
-  /** Return Songs where some of the related SongComposedByConnections match this filter */
-  composedByConnection_SOME?: InputMaybe<SongComposedByConnectionWhere>;
-  composedByAggregate?: InputMaybe<SongComposedByAggregateInput>;
-  /** @deprecated Use `allPlays_SOME` instead. */
-  allPlays?: InputMaybe<PlayWhere>;
-  /** @deprecated Use `allPlays_NONE` instead. */
-  allPlays_NOT?: InputMaybe<PlayWhere>;
-  /** Return Songs where all of the related Plays match this filter */
-  allPlays_ALL?: InputMaybe<PlayWhere>;
-  /** Return Songs where none of the related Plays match this filter */
-  allPlays_NONE?: InputMaybe<PlayWhere>;
-  /** Return Songs where one of the related Plays match this filter */
-  allPlays_SINGLE?: InputMaybe<PlayWhere>;
-  /** Return Songs where some of the related Plays match this filter */
-  allPlays_SOME?: InputMaybe<PlayWhere>;
-  /** @deprecated Use `allPlaysConnection_SOME` instead. */
-  allPlaysConnection?: InputMaybe<SongAllPlaysConnectionWhere>;
-  /** @deprecated Use `allPlaysConnection_NONE` instead. */
-  allPlaysConnection_NOT?: InputMaybe<SongAllPlaysConnectionWhere>;
-  /** Return Songs where all of the related SongAllPlaysConnections match this filter */
-  allPlaysConnection_ALL?: InputMaybe<SongAllPlaysConnectionWhere>;
-  /** Return Songs where none of the related SongAllPlaysConnections match this filter */
-  allPlaysConnection_NONE?: InputMaybe<SongAllPlaysConnectionWhere>;
-  /** Return Songs where one of the related SongAllPlaysConnections match this filter */
-  allPlaysConnection_SINGLE?: InputMaybe<SongAllPlaysConnectionWhere>;
-  /** Return Songs where some of the related SongAllPlaysConnections match this filter */
-  allPlaysConnection_SOME?: InputMaybe<SongAllPlaysConnectionWhere>;
-  allPlaysAggregate?: InputMaybe<SongAllPlaysAggregateInput>;
+  /** @deprecated Use `album_SOME` instead. */
+  album?: InputMaybe<AlbumWhere>;
+  /** @deprecated Use `album_NONE` instead. */
+  album_NOT?: InputMaybe<AlbumWhere>;
+  /** Return Songs where all of the related Albums match this filter */
+  album_ALL?: InputMaybe<AlbumWhere>;
+  /** Return Songs where none of the related Albums match this filter */
+  album_NONE?: InputMaybe<AlbumWhere>;
+  /** Return Songs where one of the related Albums match this filter */
+  album_SINGLE?: InputMaybe<AlbumWhere>;
+  /** Return Songs where some of the related Albums match this filter */
+  album_SOME?: InputMaybe<AlbumWhere>;
+  /** @deprecated Use `albumConnection_SOME` instead. */
+  albumConnection?: InputMaybe<SongAlbumConnectionWhere>;
+  /** @deprecated Use `albumConnection_NONE` instead. */
+  albumConnection_NOT?: InputMaybe<SongAlbumConnectionWhere>;
+  /** Return Songs where all of the related SongAlbumConnections match this filter */
+  albumConnection_ALL?: InputMaybe<SongAlbumConnectionWhere>;
+  /** Return Songs where none of the related SongAlbumConnections match this filter */
+  albumConnection_NONE?: InputMaybe<SongAlbumConnectionWhere>;
+  /** Return Songs where one of the related SongAlbumConnections match this filter */
+  albumConnection_SINGLE?: InputMaybe<SongAlbumConnectionWhere>;
+  /** Return Songs where some of the related SongAlbumConnections match this filter */
+  albumConnection_SOME?: InputMaybe<SongAlbumConnectionWhere>;
+  albumAggregate?: InputMaybe<SongAlbumAggregateInput>;
   /** @deprecated Use `singers_SOME` instead. */
   singers?: InputMaybe<PersonWhere>;
   /** @deprecated Use `singers_NONE` instead. */
@@ -4015,6 +3940,56 @@ export type SongWhere = {
   /** Return Songs where some of the related SongSingersConnections match this filter */
   singersConnection_SOME?: InputMaybe<SongSingersConnectionWhere>;
   singersAggregate?: InputMaybe<SongSingersAggregateInput>;
+  /** @deprecated Use `features_SOME` instead. */
+  features?: InputMaybe<PersonWhere>;
+  /** @deprecated Use `features_NONE` instead. */
+  features_NOT?: InputMaybe<PersonWhere>;
+  /** Return Songs where all of the related People match this filter */
+  features_ALL?: InputMaybe<PersonWhere>;
+  /** Return Songs where none of the related People match this filter */
+  features_NONE?: InputMaybe<PersonWhere>;
+  /** Return Songs where one of the related People match this filter */
+  features_SINGLE?: InputMaybe<PersonWhere>;
+  /** Return Songs where some of the related People match this filter */
+  features_SOME?: InputMaybe<PersonWhere>;
+  /** @deprecated Use `featuresConnection_SOME` instead. */
+  featuresConnection?: InputMaybe<SongFeaturesConnectionWhere>;
+  /** @deprecated Use `featuresConnection_NONE` instead. */
+  featuresConnection_NOT?: InputMaybe<SongFeaturesConnectionWhere>;
+  /** Return Songs where all of the related SongFeaturesConnections match this filter */
+  featuresConnection_ALL?: InputMaybe<SongFeaturesConnectionWhere>;
+  /** Return Songs where none of the related SongFeaturesConnections match this filter */
+  featuresConnection_NONE?: InputMaybe<SongFeaturesConnectionWhere>;
+  /** Return Songs where one of the related SongFeaturesConnections match this filter */
+  featuresConnection_SINGLE?: InputMaybe<SongFeaturesConnectionWhere>;
+  /** Return Songs where some of the related SongFeaturesConnections match this filter */
+  featuresConnection_SOME?: InputMaybe<SongFeaturesConnectionWhere>;
+  featuresAggregate?: InputMaybe<SongFeaturesAggregateInput>;
+  /** @deprecated Use `composedBy_SOME` instead. */
+  composedBy?: InputMaybe<PersonWhere>;
+  /** @deprecated Use `composedBy_NONE` instead. */
+  composedBy_NOT?: InputMaybe<PersonWhere>;
+  /** Return Songs where all of the related People match this filter */
+  composedBy_ALL?: InputMaybe<PersonWhere>;
+  /** Return Songs where none of the related People match this filter */
+  composedBy_NONE?: InputMaybe<PersonWhere>;
+  /** Return Songs where one of the related People match this filter */
+  composedBy_SINGLE?: InputMaybe<PersonWhere>;
+  /** Return Songs where some of the related People match this filter */
+  composedBy_SOME?: InputMaybe<PersonWhere>;
+  /** @deprecated Use `composedByConnection_SOME` instead. */
+  composedByConnection?: InputMaybe<SongComposedByConnectionWhere>;
+  /** @deprecated Use `composedByConnection_NONE` instead. */
+  composedByConnection_NOT?: InputMaybe<SongComposedByConnectionWhere>;
+  /** Return Songs where all of the related SongComposedByConnections match this filter */
+  composedByConnection_ALL?: InputMaybe<SongComposedByConnectionWhere>;
+  /** Return Songs where none of the related SongComposedByConnections match this filter */
+  composedByConnection_NONE?: InputMaybe<SongComposedByConnectionWhere>;
+  /** Return Songs where one of the related SongComposedByConnections match this filter */
+  composedByConnection_SINGLE?: InputMaybe<SongComposedByConnectionWhere>;
+  /** Return Songs where some of the related SongComposedByConnections match this filter */
+  composedByConnection_SOME?: InputMaybe<SongComposedByConnectionWhere>;
+  composedByAggregate?: InputMaybe<SongComposedByAggregateInput>;
   /** @deprecated Use `yearReleased_SOME` instead. */
   yearReleased?: InputMaybe<YearWhere>;
   /** @deprecated Use `yearReleased_NONE` instead. */
@@ -4040,6 +4015,31 @@ export type SongWhere = {
   /** Return Songs where some of the related SongYearReleasedConnections match this filter */
   yearReleasedConnection_SOME?: InputMaybe<SongYearReleasedConnectionWhere>;
   yearReleasedAggregate?: InputMaybe<SongYearReleasedAggregateInput>;
+  /** @deprecated Use `allPlays_SOME` instead. */
+  allPlays?: InputMaybe<PlayWhere>;
+  /** @deprecated Use `allPlays_NONE` instead. */
+  allPlays_NOT?: InputMaybe<PlayWhere>;
+  /** Return Songs where all of the related Plays match this filter */
+  allPlays_ALL?: InputMaybe<PlayWhere>;
+  /** Return Songs where none of the related Plays match this filter */
+  allPlays_NONE?: InputMaybe<PlayWhere>;
+  /** Return Songs where one of the related Plays match this filter */
+  allPlays_SINGLE?: InputMaybe<PlayWhere>;
+  /** Return Songs where some of the related Plays match this filter */
+  allPlays_SOME?: InputMaybe<PlayWhere>;
+  /** @deprecated Use `allPlaysConnection_SOME` instead. */
+  allPlaysConnection?: InputMaybe<SongAllPlaysConnectionWhere>;
+  /** @deprecated Use `allPlaysConnection_NONE` instead. */
+  allPlaysConnection_NOT?: InputMaybe<SongAllPlaysConnectionWhere>;
+  /** Return Songs where all of the related SongAllPlaysConnections match this filter */
+  allPlaysConnection_ALL?: InputMaybe<SongAllPlaysConnectionWhere>;
+  /** Return Songs where none of the related SongAllPlaysConnections match this filter */
+  allPlaysConnection_NONE?: InputMaybe<SongAllPlaysConnectionWhere>;
+  /** Return Songs where one of the related SongAllPlaysConnections match this filter */
+  allPlaysConnection_SINGLE?: InputMaybe<SongAllPlaysConnectionWhere>;
+  /** Return Songs where some of the related SongAllPlaysConnections match this filter */
+  allPlaysConnection_SOME?: InputMaybe<SongAllPlaysConnectionWhere>;
+  allPlaysAggregate?: InputMaybe<SongAllPlaysAggregateInput>;
 };
 
 export type SongYearReleasedAggregateInput = {
@@ -4801,55 +4801,6 @@ export declare class PersonModel {
   }): Promise<PersonAggregateSelection>;
 }
 
-export interface PlayAggregateSelectionInput {
-  count?: boolean;
-  month?: boolean;
-}
-
-export declare class PlayModel {
-  public find(args?: {
-    where?: PlayWhere;
-
-    options?: PlayOptions;
-    selectionSet?: string | DocumentNode | SelectionSetNode;
-    args?: any;
-    context?: any;
-    rootValue?: any;
-  }): Promise<Play[]>;
-  public create(args: {
-    input: PlayCreateInput[];
-    selectionSet?: string | DocumentNode | SelectionSetNode;
-    args?: any;
-    context?: any;
-    rootValue?: any;
-  }): Promise<CreatePlaysMutationResponse>;
-  public update(args: {
-    where?: PlayWhere;
-    update?: PlayUpdateInput;
-    connect?: PlayConnectInput;
-    disconnect?: PlayDisconnectInput;
-    create?: PlayCreateInput;
-
-    selectionSet?: string | DocumentNode | SelectionSetNode;
-    args?: any;
-    context?: any;
-    rootValue?: any;
-  }): Promise<UpdatePlaysMutationResponse>;
-  public delete(args: {
-    where?: PlayWhere;
-    delete?: PlayDeleteInput;
-    context?: any;
-    rootValue?: any;
-  }): Promise<{ nodesDeleted: number; relationshipsDeleted: number }>;
-  public aggregate(args: {
-    where?: PlayWhere;
-
-    aggregate: PlayAggregateSelectionInput;
-    context?: any;
-    rootValue?: any;
-  }): Promise<PlayAggregateSelection>;
-}
-
 export interface SongAggregateSelectionInput {
   count?: boolean;
   SongId?: boolean;
@@ -4900,52 +4851,6 @@ export declare class SongModel {
   }): Promise<SongAggregateSelection>;
 }
 
-export interface UserAggregateSelectionInput {
-  count?: boolean;
-  username?: boolean;
-}
-
-export declare class UserModel {
-  public find(args?: {
-    where?: UserWhere;
-
-    options?: UserOptions;
-    selectionSet?: string | DocumentNode | SelectionSetNode;
-    args?: any;
-    context?: any;
-    rootValue?: any;
-  }): Promise<User[]>;
-  public create(args: {
-    input: UserCreateInput[];
-    selectionSet?: string | DocumentNode | SelectionSetNode;
-    args?: any;
-    context?: any;
-    rootValue?: any;
-  }): Promise<CreateUsersMutationResponse>;
-  public update(args: {
-    where?: UserWhere;
-    update?: UserUpdateInput;
-
-    selectionSet?: string | DocumentNode | SelectionSetNode;
-    args?: any;
-    context?: any;
-    rootValue?: any;
-  }): Promise<UpdateUsersMutationResponse>;
-  public delete(args: {
-    where?: UserWhere;
-
-    context?: any;
-    rootValue?: any;
-  }): Promise<{ nodesDeleted: number; relationshipsDeleted: number }>;
-  public aggregate(args: {
-    where?: UserWhere;
-
-    aggregate: UserAggregateSelectionInput;
-    context?: any;
-    rootValue?: any;
-  }): Promise<UserAggregateSelection>;
-}
-
 export interface VersionAggregateSelectionInput {
   count?: boolean;
 }
@@ -4992,6 +4897,101 @@ export declare class VersionModel {
     context?: any;
     rootValue?: any;
   }): Promise<VersionAggregateSelection>;
+}
+
+export interface PlayAggregateSelectionInput {
+  count?: boolean;
+  month?: boolean;
+}
+
+export declare class PlayModel {
+  public find(args?: {
+    where?: PlayWhere;
+
+    options?: PlayOptions;
+    selectionSet?: string | DocumentNode | SelectionSetNode;
+    args?: any;
+    context?: any;
+    rootValue?: any;
+  }): Promise<Play[]>;
+  public create(args: {
+    input: PlayCreateInput[];
+    selectionSet?: string | DocumentNode | SelectionSetNode;
+    args?: any;
+    context?: any;
+    rootValue?: any;
+  }): Promise<CreatePlaysMutationResponse>;
+  public update(args: {
+    where?: PlayWhere;
+    update?: PlayUpdateInput;
+    connect?: PlayConnectInput;
+    disconnect?: PlayDisconnectInput;
+    create?: PlayCreateInput;
+
+    selectionSet?: string | DocumentNode | SelectionSetNode;
+    args?: any;
+    context?: any;
+    rootValue?: any;
+  }): Promise<UpdatePlaysMutationResponse>;
+  public delete(args: {
+    where?: PlayWhere;
+    delete?: PlayDeleteInput;
+    context?: any;
+    rootValue?: any;
+  }): Promise<{ nodesDeleted: number; relationshipsDeleted: number }>;
+  public aggregate(args: {
+    where?: PlayWhere;
+
+    aggregate: PlayAggregateSelectionInput;
+    context?: any;
+    rootValue?: any;
+  }): Promise<PlayAggregateSelection>;
+}
+
+export interface UserAggregateSelectionInput {
+  count?: boolean;
+  username?: boolean;
+}
+
+export declare class UserModel {
+  public find(args?: {
+    where?: UserWhere;
+
+    options?: UserOptions;
+    selectionSet?: string | DocumentNode | SelectionSetNode;
+    args?: any;
+    context?: any;
+    rootValue?: any;
+  }): Promise<User[]>;
+  public create(args: {
+    input: UserCreateInput[];
+    selectionSet?: string | DocumentNode | SelectionSetNode;
+    args?: any;
+    context?: any;
+    rootValue?: any;
+  }): Promise<CreateUsersMutationResponse>;
+  public update(args: {
+    where?: UserWhere;
+    update?: UserUpdateInput;
+
+    selectionSet?: string | DocumentNode | SelectionSetNode;
+    args?: any;
+    context?: any;
+    rootValue?: any;
+  }): Promise<UpdateUsersMutationResponse>;
+  public delete(args: {
+    where?: UserWhere;
+
+    context?: any;
+    rootValue?: any;
+  }): Promise<{ nodesDeleted: number; relationshipsDeleted: number }>;
+  public aggregate(args: {
+    where?: UserWhere;
+
+    aggregate: UserAggregateSelectionInput;
+    context?: any;
+    rootValue?: any;
+  }): Promise<UserAggregateSelection>;
 }
 
 export interface YearAggregateSelectionInput {
@@ -5043,52 +5043,6 @@ export declare class YearModel {
   }): Promise<YearAggregateSelection>;
 }
 
-export interface PlayBreakdownAggregateSelectionInput {
-  count?: boolean;
-  playCount?: boolean;
-}
-
-export declare class PlayBreakdownModel {
-  public find(args?: {
-    where?: PlayBreakdownWhere;
-
-    options?: PlayBreakdownOptions;
-    selectionSet?: string | DocumentNode | SelectionSetNode;
-    args?: any;
-    context?: any;
-    rootValue?: any;
-  }): Promise<PlayBreakdown[]>;
-  public create(args: {
-    input: PlayBreakdownCreateInput[];
-    selectionSet?: string | DocumentNode | SelectionSetNode;
-    args?: any;
-    context?: any;
-    rootValue?: any;
-  }): Promise<CreatePlayBreakdownsMutationResponse>;
-  public update(args: {
-    where?: PlayBreakdownWhere;
-    update?: PlayBreakdownUpdateInput;
-
-    selectionSet?: string | DocumentNode | SelectionSetNode;
-    args?: any;
-    context?: any;
-    rootValue?: any;
-  }): Promise<UpdatePlayBreakdownsMutationResponse>;
-  public delete(args: {
-    where?: PlayBreakdownWhere;
-
-    context?: any;
-    rootValue?: any;
-  }): Promise<{ nodesDeleted: number; relationshipsDeleted: number }>;
-  public aggregate(args: {
-    where?: PlayBreakdownWhere;
-
-    aggregate: PlayBreakdownAggregateSelectionInput;
-    context?: any;
-    rootValue?: any;
-  }): Promise<PlayBreakdownAggregateSelection>;
-}
-
 export interface MonthlyPlaysForSongResponseAggregateSelectionInput {
   count?: boolean;
   title?: boolean;
@@ -5137,15 +5091,61 @@ export declare class MonthlyPlaysForSongResponseModel {
   }): Promise<MonthlyPlaysForSongResponseAggregateSelection>;
 }
 
+export interface PlayBreakdownAggregateSelectionInput {
+  count?: boolean;
+  playCount?: boolean;
+}
+
+export declare class PlayBreakdownModel {
+  public find(args?: {
+    where?: PlayBreakdownWhere;
+
+    options?: PlayBreakdownOptions;
+    selectionSet?: string | DocumentNode | SelectionSetNode;
+    args?: any;
+    context?: any;
+    rootValue?: any;
+  }): Promise<PlayBreakdown[]>;
+  public create(args: {
+    input: PlayBreakdownCreateInput[];
+    selectionSet?: string | DocumentNode | SelectionSetNode;
+    args?: any;
+    context?: any;
+    rootValue?: any;
+  }): Promise<CreatePlayBreakdownsMutationResponse>;
+  public update(args: {
+    where?: PlayBreakdownWhere;
+    update?: PlayBreakdownUpdateInput;
+
+    selectionSet?: string | DocumentNode | SelectionSetNode;
+    args?: any;
+    context?: any;
+    rootValue?: any;
+  }): Promise<UpdatePlayBreakdownsMutationResponse>;
+  public delete(args: {
+    where?: PlayBreakdownWhere;
+
+    context?: any;
+    rootValue?: any;
+  }): Promise<{ nodesDeleted: number; relationshipsDeleted: number }>;
+  public aggregate(args: {
+    where?: PlayBreakdownWhere;
+
+    aggregate: PlayBreakdownAggregateSelectionInput;
+    context?: any;
+    rootValue?: any;
+  }): Promise<PlayBreakdownAggregateSelection>;
+}
+
 export interface ModelMap {
   Album: AlbumModel;
   Edition: EditionModel;
   Person: PersonModel;
-  Play: PlayModel;
   Song: SongModel;
-  User: UserModel;
   Version: VersionModel;
+  Play: PlayModel;
+  User: UserModel;
   Year: YearModel;
-  PlayBreakdown: PlayBreakdownModel;
   MonthlyPlaysForSongResponse: MonthlyPlaysForSongResponseModel;
+  PlayBreakdown: PlayBreakdownModel;
 }
