@@ -1,6 +1,6 @@
-import { OGM } from "@neo4j/graphql-ogm";
+import type { OGM } from "@neo4j/graphql-ogm";
 
-import { ModelMap, MonthlyPlaysForSongParams, SongAllPlaysConnection } from "../types";
+import type { ModelMap, MonthlyPlaysForSongParams, SongAllPlaysConnection } from "../types";
 
 const selectionSet = `
     {
@@ -17,7 +17,7 @@ const selectionSet = `
     }
 `;
 
-export default (ogm: OGM<ModelMap>) => async (_, args: { params: MonthlyPlaysForSongParams }) => {
+export default (ogm: OGM<ModelMap>) => async (_ : unknown, args: { params: MonthlyPlaysForSongParams }) => {
     const songs = await ogm.model("Song").find({ where: { title: `${args.params.title}` }, selectionSet});
     const songPlays = songs.map(
         song => song.allPlaysConnection.edges.reduce(

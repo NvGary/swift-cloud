@@ -1,3 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
+// this file is auto-generated
+// DO NOT edit contents directly as edits could be lost
+
 import type { SelectionSetNode, DocumentNode } from "graphql";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;

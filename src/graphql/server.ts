@@ -1,14 +1,16 @@
-import { OGM } from "@neo4j/graphql-ogm";
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import { Neo4jGraphQL } from '@neo4j/graphql';
-import neo4j from 'neo4j-driver';
+import { OGM } from "@neo4j/graphql-ogm";
 import { readFileSync } from 'fs';
-import { NEO4J } from '../secrets';
-import { ModelMap } from './types';
-import monthlyPlaysForSongResolver from './resolvers/monthlyPlaysForSong';
+import type http from 'http';
+import neo4j from 'neo4j-driver';
 
-export async function init({ httpServer }) {
+import { NEO4J } from '../secrets';
+import monthlyPlaysForSongResolver from './resolvers/monthlyPlaysForSong';
+import { ModelMap } from './types';
+
+export async function init({ httpServer }: { httpServer: http.Server }) {
     // graphql
     const typeDefs = readFileSync('./src/graphql/schema.graphql', { encoding: 'utf-8' });
 

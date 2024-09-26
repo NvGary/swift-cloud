@@ -1,9 +1,10 @@
 import express from 'express';
 import http from 'http';
-import * as middlewares from './middlewares';
-import { init } from './graphql/server';
 
-(async () => {
+import { init } from './graphql/server';
+import * as middlewares from './middlewares';
+
+const main = async () => {
     process.on('SIGTERM', () => {
         httpServer?.close();
     });
@@ -25,4 +26,6 @@ import { init } from './graphql/server';
 
     app.use(...middlewares.buildList({ apolloServer }))
     httpServer.listen({ port: 4000 });
-})();
+};
+
+void main();
