@@ -1,0 +1,106 @@
+# Album details
+type Album {
+  AlbumId: BigInt!
+  tracks: [Song!]! @relationship(type: "HAS_TRACK", direction: OUT)
+  editions: [Edition!]! @relationship(type: "IS_EDITION", direction: OUT)
+  title: String!
+}
+
+type Edition {
+  name: EditionType!
+}
+
+enum EditionType {
+  Platinum
+  Deluxe
+  Physical
+  Soundtrack
+}
+
+type MonthlyPlaysProperties @relationshipProperties {
+  totalPlays: BigInt!
+}
+
+type Person {
+  name: String!
+  sings: [Song!]! @relationship(type: "SINGS", direction: OUT)
+  featuredIn: [Song!]! @relationship(type: "FEATURES", direction: IN)
+  composed: [Song!]! @relationship(type: "LYRICS_BY", direction: IN)
+}
+
+type Play {
+  month: String!
+  song: [Song!]!
+    @relationship(
+      type: "MONTHLY_PLAYS"
+      direction: IN
+      properties: "MonthlyPlaysProperties"
+    )
+}
+
+type Song {
+  SongId: BigInt!
+  album: [Album!]! @relationship(type: "HAS_TRACK", direction: IN)
+  features: [Person!]! @relationship(type: "FEATURES", direction: OUT)
+  versions: [Version!]! @relationship(type: "IS_VERSION", direction: OUT)
+  composedBy: [Person!]! @relationship(type: "LYRICS_BY", direction: OUT)
+  allPlays: [Play!]!
+    @relationship(
+      type: "MONTHLY_PLAYS"
+      direction: OUT
+      properties: "MonthlyPlaysProperties"
+    )
+  singers: [Person!]! @relationship(type: "SINGS", direction: IN)
+  title: String!
+  yearReleased: [Year!]! @relationship(type: "WAS_RELEASED", direction: OUT)
+  monthlyPlays: BigInt! @cypher(
+    statement: """
+    MATCH (this)-[c:MONTHLY_PLAYS]-(Play)
+    RETURN sum(c.totalPlays) as totalPlays
+    """,
+    columnName: "totalPlays"
+  )
+}
+
+type User {
+  username: String!
+}
+
+type Version {
+  name: VersionType!
+  songs: [Song!]! @relationship(type: "IS_VERSION", direction: IN)
+}
+
+enum VersionType {
+  Album
+  Cover
+  Live
+  Piano
+  Remix
+  Single
+}
+
+type Year {
+  year: BigInt!
+  songs: [Song!]! @relationship(type: "WAS_RELEASED", direction: IN)
+}
+
+type PlayBreakdown {
+  version: [VersionType!]!
+  playCount: BigInt!
+}
+
+type MonthlyPlaysForSongResponse {
+  title: String!
+  versionCount: BigInt!
+  totalPlays: BigInt!
+  playBreakdown: [PlayBreakdown!]!
+}
+
+input MonthlyPlaysForSongParams {
+  title: String!
+}
+
+type Query {
+  monthlyPlaysForSong(params: MonthlyPlaysForSongParams): MonthlyPlaysForSongResponse
+}

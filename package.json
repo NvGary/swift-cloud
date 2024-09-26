@@ -5,8 +5,9 @@
   "private": "true",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./src/server.ts",
-    "test": "jest"
+    "start": "ts-node ./src/index.ts",
+    "test": "jest",
+    "types:generate": "ts-node ./utils/types/generate.ts"
   },
   "repository": {
     "type": "git",
@@ -30,9 +31,12 @@
   },
   "dependencies": {
     "@apollo/server": "^4.11.0",
+    "@neo4j/graphql": "^5.6.2",
+    "@neo4j/graphql-ogm": "^5.6.2",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.0",
-    "graphql": "^16.9.0"
+    "graphql": "^16.9.0",
+    "neo4j-driver": "^5.24.1"
   }
 }
