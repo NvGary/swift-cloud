@@ -10,7 +10,6 @@ import { NEO4J } from '../../src/secrets';
 const typeDefs = readFileSync('./src/graphql/schema.graphql', { encoding: 'utf-8' });
 const driver = neo4j.driver(NEO4J.NEO4J_URI, neo4j.auth.basic(NEO4J.NEO4J_USERNAME, NEO4J.NEO4J_PASSWORD));
 
-// Generic is applied on the OGM
 const ogm = new OGM<ModelMap>({ typeDefs, driver });
 
 async function main() {

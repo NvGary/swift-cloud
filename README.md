@@ -23,4 +23,4 @@ Open your favourite browser and navigate to <http://localhost:4000>. Enjoy!
 Some sample graphql queries have been composed to get you started. Click [here](SAMPLES.md) to view them.
 
 ## CAUTION
-The backend neo4j is a temporary sandbox instance will expire on 04 Oct 2024. It also does not have any security roles defined so the provided credentials are administrative. PLEASE EXERCISE CAUTION and do not execute MUTATIONS.
+The backend neo4j is a temporary sandbox instance will expire on 04 Oct 2024. It also does not have any security roles defined so the provided credentials are administrative. Whist precautions have been taken to limit execution rights on graphql queries (every non-READ OR AGGREGATE request requires authorization via BEARER token) PLEASE EXERCISE CAUTION if you do execute MUTATIONS.

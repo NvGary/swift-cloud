@@ -7,7 +7,7 @@
 #
 
 # An album, which can have song tracks and maybe different editions, e.g. platinum
-type Album {
+type Album @authentication(operations: [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP, SUBSCRIBE]) {
   # Internally assigned Id (key)
   AlbumId: BigInt!
 
@@ -22,7 +22,7 @@ type Album {
 }
 
 # An edition of an album, e.g. platinum
-type Edition {
+type Edition @authentication(operations: [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP, SUBSCRIBE]) {
   # name given to this 'edition'
   name: EditionType!
 }
@@ -40,7 +40,7 @@ enum EditionType {
 #
 
 # A person. This will be Singer, Features and/or Composer depending on the individual & Song referenced
-type Person {
+type Person @authentication(operations: [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP, SUBSCRIBE]) {
   # name of the person (key)
   name: String!
 
@@ -59,7 +59,7 @@ type Person {
 #
 
 # A song which can reference peoplef, playouts and enveloping Album if applicable
-type Song {
+type Song @authentication(operations: [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP, SUBSCRIBE]) {
   # internally assigned id (key)
   SongId: BigInt!
 
@@ -103,7 +103,7 @@ type Song {
 }
 
 # A version of an Song, e.g. cover
-type Version {
+type Version @authentication(operations: [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP, SUBSCRIBE]) {
   name: VersionType!
   songs: [Song!]! @relationship(type: "IS_VERSION", direction: IN)
 }
@@ -123,7 +123,7 @@ enum VersionType {
 #
 
 # Monthly play of a song
-type Play {
+type Play @authentication(operations: [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP, SUBSCRIBE]) {
   # Name of the month
   month: String!
 
@@ -137,7 +137,7 @@ type Play {
 }
 
 # Edge connecting Song & Play nodes
-type MonthlyPlaysProperties @relationshipProperties {
+type MonthlyPlaysProperties @relationshipProperties @authentication(operations: [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP, SUBSCRIBE]) {
   # total monthly plays for that song & month combination
   totalPlays: BigInt!
 }
@@ -147,13 +147,13 @@ type MonthlyPlaysProperties @relationshipProperties {
 #
 
 # User - we only have 1 registered user but who else do we really need :)
-type User {
+type User @authentication(operations: [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP, SUBSCRIBE]) {
   # username for the user, i.e TayTay for our 1 user in ths system
   username: String!
 }
 
 # Year ordinal
-type Year {
+type Year @authentication(operations: [CREATE, UPDATE, DELETE, CREATE_RELATIONSHIP, DELETE_RELATIONSHIP, SUBSCRIBE]) {
   # ordinal (key)
   year: BigInt!
 
@@ -167,7 +167,8 @@ type Year {
 
 # Returns aggregated monthly plays for an individual song
 # Song is searched and matched by name
-# This allows for all song versions to be collated and considered as one, e.g. original, cover & live versions of a song, whilst different 'songs' will be treated as 1 in this Query
+# This allows for all song versions to be collated and considered as one;
+# e.g. original, cover & live versions of a song, whilst technically different 'songs', will be treated as 1 in this Query
 type Query {
   # total monthly plays for a specific song
   monthlyPlaysForSong(params: MonthlyPlaysForSongParams): MonthlyPlaysForSongResponse
