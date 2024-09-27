@@ -19,7 +19,7 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['**/**/graphql/types.ts']
+    ignores: ['**/**/graphql/types.ts', '/node_modules/**']
   },
   {
     files: ['**/**.ts', "**/**.mjs"],
