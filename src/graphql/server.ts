@@ -24,7 +24,11 @@ export async function init({ httpServer }: { httpServer: http.Server }) {
             monthlyPlaysForSong: monthlyPlaysForSongResolver(ogm)
         },
     };
-    const neoSchema = new Neo4jGraphQL({ typeDefs, driver, resolvers });
+    const neoSchema = new Neo4jGraphQL({ typeDefs, driver, resolvers, features: {
+        authorization: {
+            key: "not-actually-used-anywhere...will-be-moved-to-secrets-when-used",
+        }
+     } });
     const schema = await neoSchema.getSchema();
 
     // Init Apollo Server
